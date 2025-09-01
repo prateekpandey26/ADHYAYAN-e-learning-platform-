@@ -51,3 +51,7 @@ MIT
 
 ---
 Made with ❤️ by Prateek Pandey
+=======
+# ADHYAYAN-e-learning-platform-
+>>>>>>> 7ce972f480403ba7ed095b21c31d4dfb2de1dc4f
+
