@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADHYAYAN - E-Learning Platform</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Learn anything, anywhere – courses, quizzes, certificates, profile management." />
+  <style>
+    .adhyayan-text {
+      font-weight: bold;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #4e73df, #1cc88a, #f6c23e, #f5576c);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      animation: gradient-move 3s ease-in-out infinite;
+      letter-spacing: 0.18em;
+      display: inline-block;
+    }
+    @keyframes gradient-move {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner">
+    <div class="container nav-inner">
+      <a href="#home" class="brand brand-adhyayan" aria-label="Home"><span class="adhyayan-text">ADHYAYAN</span></a>
+      <div class="main-navbar-row">
+  <!-- Remove profile button from nav-actions, will add to theme-row -->
+      </div>
+      <div class="theme-row">
+        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;">
+          <a href="#home" class="btn ghost nav-auth-btn">Home</a>
+          <button id="signupBtn" class="btn primary nav-auth-btn">Sign up</button>
+          <button id="loginBtn" class="btn ghost nav-auth-btn">Log in</button>
+          <div id="profileDropdown" class="profile-dropdown">
+            <button id="profileBtn" class="btn ghost nav-auth-btn" aria-haspopup="true" aria-expanded="false" style="font-size:0.92rem;padding:0.25rem 0.9rem;border-radius:8px;min-width:0;height:1.7rem;">
+              <span id="profileName">My Profile</span> <span class="profile-arrow">▼</span>
+            </button>
+            <div id="profileMenu" class="profile-menu">
+              <button id="myProfileSection">My Profile</button>
+              <button id="logoutBtn">Logout</button>
+            </div>
+          </div>
+        </div>
+        <div class="theme-row-actions">
+          <a href="#cart" id="cartNav" class="cart-link btn ghost nav-auth-btn">
+            <span class="cart-icon">🛒</span>
+            <span id="cartCount" class="cart-count">0</span>
+          </a>
+          <button id="themeToggle" class="btn ghost nav-theme-btn" aria-pressed="false">🌙</button>
+        </div>
+      </div>
+
+      <!-- Profile Modal -->
+      <dialog id="profileModal" class="modal">
+        <button class="modal-close" id="closeProfileModal">✕</button>
+        <div class="modal-body" id="profileModalBody">
+          <!-- User details will be rendered here by JS -->
+        </div>
+      </dialog>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Learn new skills, fast.</h1>
+      <p>Explore top courses, take quizzes, and earn certificates.</p>
+      <div class="hero-action-row">
+        <div class="hero-search-group">
+          <div class="hero-search-dropdown">
+            <button id="heroSearchDropdownBtn" class="hero-search-dropdown-btn" aria-haspopup="true" aria-expanded="false">
+              <span id="heroSearchDropdownLabel">All Sections</span> <span style="font-size:1.1rem;">▼</span>
+            </button>
+            <div id="heroSearchDropdownMenu" class="hero-search-dropdown-menu">
+              <a href="#catalog">Catalog</a>
+              <a href="#my-courses">My Courses</a>
+              <a href="#instructor-dashboard">Instructor Dashboard</a>
+              <a href="#quizzes">Quizzes</a>
+              <a href="#certificates">Certificates</a>
+              <a href="#contact">Contact</a>
+              <a href="#cart">Cart</a>
+            </div>
+          </div>
+          <input id="heroSearchInput" class="hero-search-input" type="text" placeholder="Search subject..." autocomplete="off" />
+          <button id="heroSearchBtn" class="hero-search-btn">🔍</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2>Platform Features</h2>
+      <ul>
+        <li>Interactive courses with progress tracking</li>
+        <li>Instructor Dashboard for creating courses</li>
+        <li>Student profile and achievements</li>
+        <li>Quizzes and certificates</li>
+        <li>Dark/Light theme toggle</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COURSE CATALOG -->
+  <section id="catalog" class="catalog">
+    <div class="container">
+      <h2>Course Catalog</h2>
+      <div id="courseGrid" class="grid">
+        <!-- JS dynamically renders courses here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT COURSES -->
+  <section id="my-courses" class="my-courses">
+    <div class="container">
+      <h2>My Courses</h2>
+      <div id="myCoursesGrid" class="grid">
+        <!-- JS dynamically renders enrolled courses here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTOR DASHBOARD -->
+  <section id="instructor-dashboard" class="instructor-dashboard">
+    <div class="container">
+      <h2>Instructor Dashboard</h2>
+      <form id="courseForm">
+        <label>Course Title: <input type="text" id="courseTitleInput" required></label>
+        <label>Description: <textarea id="courseDescInput" required></textarea></label>
+        <label>Category: <input type="text" id="courseCatInput"></label>
+        <label>Price: <input type="number" id="coursePriceInput" value="0"></label>
+        <button type="submit" class="btn primary">Add Course</button>
+      </form>
+      <div class="grid" style="margin-top: 2rem;">
+        <!-- JS dynamically renders instructor courses if needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZZES SECTION -->
+  <section id="quizzes" class="quizzes">
+    <div class="container">
+      <h2>Quizzes</h2>
+      <div id="quizGrid" class="grid">
+        <!-- JS dynamically renders quizzes here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES SECTION -->
+  <section id="certificates" class="certificates">
+    <div class="container">
+      <h2>Certificates</h2>
+      <div id="certGrid" class="grid">
+        <!-- JS dynamically renders certificates here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTH MODAL -->
+  <dialog id="authModal" class="modal">
+    <button class="modal-close" id="closeAuthModal">✕</button>
+    <div class="modal-body">
+      <!-- LOGIN FORM -->
+      <form id="loginForm">
+        <h2>Login</h2>
+        <label>Email: <input type="email" id="loginEmail" required></label>
+        <label>Password: <input type="password" id="loginPassword" required></label>
+        <button type="submit" class="btn primary">Log in</button>
+      </form>
+      <hr />
+      <!-- SIGNUP FORM -->
+      <form id="signupForm">
+        <h2>Sign Up</h2>
+        <label>Name: <input type="text" id="signupName" required></label>
+        <label>Email: <input type="email" id="signupEmail" required></label>
+        <label>Password: <input type="password" id="signupPassword" required></label>
+        <label>Role:
+          <select id="signupRole">
+            <option value="student">Student</option>
+            <option value="instructor">Instructor</option>
+          </select>
+        </label>
+        <button type="submit" class="btn primary">Sign up</button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- CONTACT / CUSTOMER SUPPORT -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Support: 9120024976</h2>
+      <p>If you have any questions or need assistance, reach out to us!</p>
+      <form id="contactForm">
+        <label>Name: <input type="text" id="contactName" required placeholder="Your Name"></label>
+        <label>Email: <input type="email" id="contactEmail" required placeholder="Your Email"></label>
+        <label>Message: <textarea id="contactMessage" required placeholder="Your Message"></textarea></label>
+        <button type="submit" class="btn primary">Send Message</button>
+      </form>
+      <div id="contactToast" class="toast" hidden></div>
+    </div>
+  </section>
+
+  <!-- CART SECTION -->
+  <section id="cart" class="cart">
+    <div class="container">
+      <h2>My Cart</h2>
+      <div id="cartGrid" class="grid"></div>
+      <div id="cartTotal" class="cart-total"></div>
+      <!-- Payment Section -->
+      <div id="paymentSection" class="payment-section">
+        <h3>Payment Method</h3>
+        <div class="payment-options">
+          <label><input type="radio" name="paymentMethod" value="upi" checked> UPI</label>
+          <label><input type="radio" name="paymentMethod" value="card"> Card</label>
+          <label><input type="radio" name="paymentMethod" value="cod"> Cash on Delivery</label>
+        </div>
+        <button id="payNowBtn" class="btn primary" style="margin-top:1rem;">Pay Now</button>
+        <div id="paymentSuccess" class="payment-success" hidden>Payment Successful! Thank you for your purchase.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <button id="scrollToTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
+
+  <!-- TOAST & LOADER -->
+  <div id="toast" class="toast" hidden></div>
+  <div id="loader" class="loader" hidden></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+  <p>© <span id="year"></span> ADHYAYAN. Made By Mr.PRATEEK PANDEY.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="script.js" defer></script>
+</body>
+</html>
