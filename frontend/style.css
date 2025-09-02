@@ -1,3 +1,30 @@
+/* Dropdown arrow for hero search */
+.dropdown-arrow {
+  font-size: 1.1rem;
+}
+
+/* Grid margin top for instructor dashboard */
+.grid-margin-top {
+  margin-top: 2rem;
+}
+
+/* Contact mail label and link */
+.contact-mail-label {
+  margin-bottom: 0.5rem;
+}
+.contact-mail-link {
+  color: #0074D9;
+  font-weight: 600;
+}
+
+/* Pay Now button margin top */
+.paynow-margin-top {
+  margin-top: 1rem;
+}
+/* Contact button blue color in navbar */
+.theme-row .nav-auth-btn[href="#contact"] {
+  color: #0074D9;
+}
 .theme-row .nav-auth-btn#loginBtn {
   color: #f6c23e;
 }
@@ -323,6 +350,8 @@
   left: 0;
   top: 120%;
   min-width: 170px;
+  max-height: 220px;
+  overflow-y: auto;
   background: #fff;
   color: #333;
   border-radius: 12px;

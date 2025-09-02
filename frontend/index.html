@@ -38,6 +38,7 @@
       <div class="theme-row">
         <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;">
           <a href="#home" class="btn ghost nav-auth-btn">Home</a>
+          <a href="#contact" class="btn ghost nav-auth-btn">Contact</a>
           <button id="signupBtn" class="btn primary nav-auth-btn">Sign up</button>
           <button id="loginBtn" class="btn ghost nav-auth-btn">Log in</button>
           <div id="profileDropdown" class="profile-dropdown">
@@ -55,7 +56,10 @@
             <span class="cart-icon">🛒</span>
             <span id="cartCount" class="cart-count">0</span>
           </a>
-          <button id="themeToggle" class="btn ghost nav-theme-btn" aria-pressed="false">🌙</button>
+          <label class="theme-toggle-label">
+            <input type="checkbox" id="themeToggleCheckbox" class="theme-toggle-checkbox" />
+            <span class="theme-toggle-icon">🌙</span>
+          </label>
         </div>
       </div>
 
@@ -77,10 +81,10 @@
       <div class="hero-action-row">
         <div class="hero-search-group">
           <div class="hero-search-dropdown">
-            <button id="heroSearchDropdownBtn" class="hero-search-dropdown-btn" aria-haspopup="true" aria-expanded="false">
-              <span id="heroSearchDropdownLabel">All Sections</span> <span style="font-size:1.1rem;">▼</span>
+            <button class="hero-search-dropdown-btn" tabindex="0">
+              <span>All Sections</span> <span class="dropdown-arrow">▼</span>
             </button>
-            <div id="heroSearchDropdownMenu" class="hero-search-dropdown-menu">
+            <div class="hero-search-dropdown-menu">
               <a href="#catalog">Catalog</a>
               <a href="#my-courses">My Courses</a>
               <a href="#instructor-dashboard">Instructor Dashboard</a>
@@ -142,7 +146,7 @@
         <label>Price: <input type="number" id="coursePriceInput" value="0"></label>
         <button type="submit" class="btn primary">Add Course</button>
       </form>
-      <div class="grid" style="margin-top: 2rem;">
+  <div class="grid grid-margin-top">
         <!-- JS dynamically renders instructor courses if needed -->
       </div>
     </div>
@@ -200,8 +204,9 @@
   <!-- CONTACT / CUSTOMER SUPPORT -->
   <section id="contact" class="contact">
     <div class="container">
-      <h2>Contact Support: 9120024976</h2>
-      <p>If you have any questions or need assistance, reach out to us!</p>
+  <h2>Contact Support: 9120024976</h2>
+  <p class="contact-mail-label">Mail at <a href="mailto:prateekpandit26@gmail.com" class="contact-mail-link">prateekpandit26@gmail.com</a></p>
+  <p>If you have any questions or need assistance, reach out to us!</p>
       <form id="contactForm">
         <label>Name: <input type="text" id="contactName" required placeholder="Your Name"></label>
         <label>Email: <input type="email" id="contactEmail" required placeholder="Your Email"></label>
@@ -226,14 +231,14 @@
           <label><input type="radio" name="paymentMethod" value="card"> Card</label>
           <label><input type="radio" name="paymentMethod" value="cod"> Cash on Delivery</label>
         </div>
-        <button id="payNowBtn" class="btn primary" style="margin-top:1rem;">Pay Now</button>
+  <button id="payNowBtn" class="btn primary paynow-margin-top">Pay Now</button>
         <div id="paymentSuccess" class="payment-success" hidden>Payment Successful! Thank you for your purchase.</div>
       </div>
     </div>
   </section>
 
   <!-- SCROLL TO TOP BUTTON -->
-  <button id="scrollToTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
+  <button id="scrollToTopBtn" title="Go to top">↑</button>
 
   <!-- TOAST & LOADER -->
   <div id="toast" class="toast" hidden></div>

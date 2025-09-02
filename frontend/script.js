@@ -37,32 +37,6 @@ if (contactForm) {
     }
   });
 }
-// ===================== HERO SECTION DROPDOWN LOGIC =====================
-const heroSectionDropdownBtn = document.getElementById('heroSectionDropdownBtn');
-const heroSectionDropdownMenu = document.getElementById('heroSectionDropdownMenu');
-const heroSectionDropdownContainer = document.getElementById('heroSectionDropdownContainer');
-if (heroSectionDropdownBtn && heroSectionDropdownMenu && heroSectionDropdownContainer) {
-  heroSectionDropdownBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const expanded = heroSectionDropdownBtn.getAttribute('aria-expanded') === 'true';
-    heroSectionDropdownBtn.setAttribute('aria-expanded', !expanded);
-    heroSectionDropdownContainer.classList.toggle('open', !expanded);
-  });
-  // Close dropdown on outside click
-  document.addEventListener('click', (e) => {
-    if (!heroSectionDropdownContainer.contains(e.target)) {
-      heroSectionDropdownBtn.setAttribute('aria-expanded', 'false');
-      heroSectionDropdownContainer.classList.remove('open');
-    }
-  });
-  // Navigate to section and close dropdown
-  heroSectionDropdownMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      heroSectionDropdownBtn.setAttribute('aria-expanded', 'false');
-      heroSectionDropdownContainer.classList.remove('open');
-    });
-  });
-}
 // ===================== DOM SELECTORS =====================
 const scrollBtn = document.getElementById('scrollToTopBtn');
 const themeToggle = document.getElementById('themeToggle');
@@ -87,83 +61,32 @@ const profileModal = document.getElementById('profileModal');
 const closeProfileModal = document.getElementById('closeProfileModal');
 const profileModalBody = document.getElementById('profileModalBody');
 
-// ===================== SCROLL TO TOP BUTTON =====================
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) scrollBtn.style.display = 'block';
-  else scrollBtn.style.display = 'none';
-});
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-// ===================== THEME TOGGLE =====================
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-theme');
-  themeToggle.setAttribute('aria-pressed', document.body.classList.contains('dark-theme'));
+// ===================== HERO SEARCH DROPDOWN TOGGLE =====================
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdown = document.querySelector('.hero-search-dropdown');
+  const btn = dropdown && dropdown.querySelector('.hero-search-dropdown-btn');
+  const menu = dropdown && dropdown.querySelector('.hero-search-dropdown-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  }
 });
+// ...existing code...
 
 // ===================== MODAL LOGIN/SIGNUP =====================
 if (loginBtn) loginBtn.addEventListener('click', () => authModal.showModal());
 if (signupBtn) signupBtn.addEventListener('click', () => authModal.showModal());
 closeAuthModal.addEventListener('click', () => authModal.close());
 
-// ===================== PROFILE DROPDOWN LOGIC =====================
-function showProfileDropdown(user) {
-  if (loginBtn) loginBtn.style.display = 'none';
-  if (signupBtn) signupBtn.style.display = 'none';
-  if (profileDropdown) {
-    profileDropdown.style.display = 'block';
-    profileName.textContent = user && user.name ? user.name : 'My Profile';
-  }
-}
-function hideProfileDropdown() {
-  if (loginBtn) loginBtn.style.display = '';
-  if (signupBtn) signupBtn.style.display = '';
-  if (profileDropdown) {
-    profileDropdown.style.display = 'none';
-    profileMenu.style.display = 'none';
-    profileDropdown.classList.remove('active');
-  }
-}
-if (profileBtn) {
-  profileBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (profileMenu.style.display === 'block') {
-      profileMenu.style.display = 'none';
-      profileDropdown.classList.remove('active');
-      profileBtn.setAttribute('aria-expanded', 'false');
-    } else {
-      profileMenu.style.display = 'block';
-      profileDropdown.classList.add('active');
-      profileBtn.setAttribute('aria-expanded', 'true');
-    }
-  });
-  document.addEventListener('click', (e) => {
-    if (profileMenu.style.display === 'block' && !profileDropdown.contains(e.target)) {
-      profileMenu.style.display = 'none';
-      profileDropdown.classList.remove('active');
-      profileBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('user');
-    hideProfileDropdown();
-    showToast('Logged out successfully');
-    window.location.hash = '#home';
-    window.location.reload();
-  });
-}
-// On page load, check if user is logged in
-document.addEventListener('DOMContentLoaded', () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user) {
-    showProfileDropdown(user);
-  } else {
-    hideProfileDropdown();
-  }
-});
+// ...existing code...
 
 // ===================== PROFILE MODAL LOGIC =====================
 if (myProfileSection) {
